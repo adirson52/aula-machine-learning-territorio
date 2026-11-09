@@ -4,7 +4,7 @@
 
 Responsável pela aula: Adirson Maciel de Freitas Junior — CEFAVELA / UFABC.
 
-Este repositório contém somente `paraisopolis.csv` e este documento. O CSV é o recorte didático usado na V3 da aula: **338 células de uma grade de 50 × 50 metros**, cada uma com um identificador, coordenadas e oito medidas. Não há uma coluna com o “grupo correto”: os alunos calcularão e interpretarão os agrupamentos.
+Este repositório contém bancos de dados didáticos em CSV e este documento. O CSV é o recorte didático usado na V3 da aula: **338 células de uma grade de 50 × 50 metros**, cada uma com um identificador, coordenadas e oito medidas. Não há uma coluna com o “grupo correto”: os alunos calcularão e interpretarão os agrupamentos.
 
 ## Abrir os dados diretamente no Google Colab
 
@@ -127,3 +127,34 @@ Esta base didáctica contiene **338 celdas de una cuadrícula de 50 × 50 m en P
 | `quantidade_domicilios` | Cantidad de viviendas asociada a la celda, a partir del CNEFE 2022. |
 
 La demostración usa cobertura, altura, pendiente y distancia a la vía. Las otras medidas son opciones para el ejercicio en parejas. Los identificadores y las coordenadas quedan fuera de las variables de agrupamiento. Las fuentes incluyen GlobalBuildingAtlas, SRTM, Sentinel-2, MapBiomas y CNEFE, con períodos de observación diferentes. La serie de edad urbana empieza en 1985: 37 años puede significar 37 años o más en 2022. Son medidas agregadas, no registros de personas. Los 338 identificadores son únicos y el archivo no contiene valores faltantes ni etiquetas de grupos. Estandarice las variables para el ejercicio e interprete los perfiles en sus unidades originales. El CSV conserva el recorte local de la clase.
+
+
+## Exemplos fictícios para aprender as contas
+
+Os dois arquivos abaixo foram **inventados para ensino**. Não são dados de alunos reais nem observações territoriais. Nenhum deles contém o grupo final como resposta.
+
+| Arquivo | Conteúdo | Objetivo |
+|---|---|---|
+| `notas_alunos_ficticios.csv` | Quatro nomes fictícios, notas de Matemática e Português na escala 0–10. | Começar o K-means por uma nota, acrescentar a segunda e calcular distâncias e médias à mão. São os mesmos quatro pontos da V3. |
+| `ocupacao_ficticia.csv` | Seis células hipotéticas de 50×50m; lado, área da célula, área edificada e cobertura em %. | Entender unidades e a relação cobertura = 100 × área edificada / área da célula, antes dos dados reais. |
+
+Para ler as notas no Colab:
+
+```python
+import pandas as pd
+url_notas = "https://raw.githubusercontent.com/adirson52/aula-machine-learning-territorio/main/notas_alunos_ficticios.csv"
+notas = pd.read_csv(url_notas).set_index("aluno")
+notas
+```
+
+Para ler o exemplo de ocupação:
+
+```python
+url_exemplo = "https://raw.githubusercontent.com/adirson52/aula-machine-learning-territorio/main/ocupacao_ficticia.csv"
+exemplo = pd.read_csv(url_exemplo)
+exemplo
+```
+
+**English:** `notas_alunos_ficticios.csv` contains four invented students and two grades (0–10), matching the V3 manual K-means example. `ocupacao_ficticia.csv` contains six hypothetical 50×50m cells: side length (m), cell area (m²), built-up area (m²) and coverage (%). They are synthetic teaching examples, not personal or observed territorial records. Neither includes cluster answers.
+
+**Español:** `notas_alunos_ficticios.csv` contiene cuatro estudiantes ficticios y dos notas (0–10), iguales al ejemplo manual de K-means de la V3. `ocupacao_ficticia.csv` contiene seis celdas hipotéticas de 50×50m: lado (m), área de la celda (m²), superficie edificada (m²) y cobertura (%). Son ejemplos inventados, no datos personales ni observaciones territoriales. Ninguno incluye las respuestas de los grupos.
